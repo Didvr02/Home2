@@ -36,21 +36,36 @@ Missing item → "No item named X here!"
 
 
 ## 5. SOLID and Clean Code
-My code is already clean and logical, but I can improve it further by:
+My implementation adheres to SOLID principles:
 
-Splitting handleInput() into smaller methods using switch-case for readability.
+SRP (Single Responsibility Principle) – Each class has a clear, distinct purpose:
 
-Adding comments to initializeCommands() and runGameLoop() to clarify their purpose.
+Inventory handles item management.
+
+Room manages room descriptions and exits.
+
+Player tracks player state and inventory.
+
+MUDController handles command processing.
+
+OCP (Open/Closed Principle) – New commands can be added easily without modifying MUDController, thanks to the Map<String, Consumer<String>> structure.
+
+LSP (Liskov Substitution Principle) – Weapon extends Item and can be used anywhere an Item is expected.
+
+DIP (Dependency Inversion Principle) – Commands are stored as a Map of functions, reducing direct dependencies between MUDController and command implementations.
 
 
 ## 6. Missing Main Class
 
-I added a Main class that:
+My Main class is responsible for setting up the game:
 
-Creates rooms.
+Creates rooms with descriptions and connections.
 
-Adds items.
+Adds items to different rooms, including weapons.
 
 Places the player in the starting room.
 
-Starts the MUDController.
+Starts the game loop via MUDController.
+
+## 7. Conclusion
+My project successfully implements all required features with structured, clean, and maintainable code. 
