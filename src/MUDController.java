@@ -14,8 +14,8 @@ public class MUDController {
     }
 
     //**
-        MudController (Skeleton):
-    *//
+        * MudController (Skeleton):
+    */
     private void initializeCommands() {
         commandMap.put("look", arg -> lookAround());
         commandMap.put("move", this::move);
