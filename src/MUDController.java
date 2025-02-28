@@ -13,7 +13,7 @@ public class MUDController {
         initializeCommands();
     }
 
-    //**//MudController (Skeleton):
+    //**MudController (Skeleton):
 
     private void initializeCommands() {
         commandMap.put("look", arg -> lookAround());
