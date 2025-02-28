@@ -25,6 +25,8 @@ public class MUDController {
         commandMap.put("quit", arg -> exitGame());
     }
 
+    //**Main loop method that repeatedly reads input from the user
+    //**and dispatches commands until the game ends.
     public void runGameLoop() {
         Scanner scanner = new Scanner(System.in);
         while (running) {
@@ -35,6 +37,7 @@ public class MUDController {
         scanner.close();
     }
 
+    //**Handle input
     private void handleInput(String input) {
         if (input.isEmpty()) {
             System.out.println("Enter a command. Type 'help' for commands.");
@@ -46,10 +49,12 @@ public class MUDController {
         commandMap.getOrDefault(command, arg -> System.out.println("Unknown command.")).accept(argument);
     }
 
+    //**Look around the current room: describe it and show items
     private void lookAround() {
         System.out.println(player.getCurrentRoom().describe());
     }
 
+    //**Move the player in a given direction (north,west,south,east)
     private void move(String direction) {
         Room nextRoom = player.getCurrentRoom().getExit(direction.toLowerCase());
         if (nextRoom != null) {
@@ -60,7 +65,8 @@ public class MUDController {
             System.out.println("You can't go that way!");
         }
     }
-
+    
+    //**Pick up an item
     private void pickUp(String argument) {
         if (!argument.startsWith("up ")) {
             System.out.println("Invalid command. Use: pick up <item>");
@@ -76,18 +82,21 @@ public class MUDController {
         }
     }
 
+    //**Attacked NPC
     private void attack(String argument) {
         System.out.println("You swing your weapon wildly, but there's nothing to fight yet!");
     }
-
+    //**Check the player's inventory.
     private void checkInventory() {
         System.out.println("You are carrying: " + player.getInventory().listItems());
     }
 
+    //**Show help commands
     private void showHelp() {
         System.out.println("Available commands: look, move <direction>, pick up <item>, inventory, attack, help, quit");
     }
 
+    //**Command for exiting game
     private void exitGame() {
         running = false;
         System.out.println("Goodbye!");
